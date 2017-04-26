@@ -2,7 +2,7 @@
 # Plugin for Kodi mediacenter
 # Kodi Universe - screensaver
 # Project "Berserk" - build Kodi for the Raspberry Pi platform, autor Alexander Demachev, site berserk.top
-# license -  The MIT License (MIT)
+# license -  GNU GENERAL PUBLIC LICENSE. Version 2, June 1991
 
 import sys
 import xbmcaddon
