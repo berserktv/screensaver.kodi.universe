@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="screensaver.kodi.universe" name="Kodi Universe" version="0.1.0" provider-name="berserktv">
+  <requires>
+    <import addon="xbmc.python" version="2.7"/>
+  </requires>
+  <extension point="xbmc.ui.screensaver" library="screensaver.py" />
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <summary lang="en">Kodi Universe</summary>
+    <summary lang="ru">Вселенная Коди</summary>
+    <description lang="en">Screensaver - Kodi Universe  </description>
+    <description lang="ru">Хранитель экрана - Вселенная Коди</description>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+  </extension>
+</addon>
