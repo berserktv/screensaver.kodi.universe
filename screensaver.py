@@ -41,10 +41,11 @@ class Screensaver(xbmcgui.WindowXMLDialog):
         pass
     
     def onInit(self):
-        xbmc.sleep(1000)
         li = BsPlaylist()
         self.vpl = li.getPlaylist()
         if self.vpl:
+            xbmc.sleep(1000)
+            self.getControl(1).setImage("black.jpg")
             self.player = BsPlayer()
             if not xbmc.getCondVisibility("Player.HasMedia"):
                 self.player.play(self.vpl,windowed=True)
