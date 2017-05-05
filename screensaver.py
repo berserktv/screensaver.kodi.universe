@@ -1,61 +1,66 @@
 # -*- coding: utf-8 -*-
 # Plugin for Kodi mediacenter
-# Kodi Universe - screensaver
-# Project "Berserk" - build Kodi for the Raspberry Pi platform, autor Alexander Demachev, site berserk.top
-# license -  GNU GENERAL PUBLIC LICENSE. Version 2, June 1991
+# Kodi Universe - Very Simple Screensaver, autor Alexander Demachev (http://berserk.top)
+# GNU GENERAL PUBLIC LICENSE. Version 2, June 1991
 
+import os
 import sys
-import xbmcaddon
-import xbmcgui
 import xbmc
+import urllib
+import xbmcgui
+import xbmcaddon
 
 __id__ = 'screensaver.kodi.universe'
 __addon__ = xbmcaddon.Addon(id=__id__)
 __path__ = __addon__.getAddonInfo('path')
-_ = __addon__.getLocalizedString
+video_url = 'special://profile/addon_data/screensaver.kodi.universe/kodi-universe.mkv'
+
+class BsPlaylist:
+    def __init__(self,):
+        pass
+
+    def getPlaylist(self,):
+        self.playlist = xbmc.PlayList(1)
+        item = xbmcgui.ListItem("item1")
+        self.playlist.add(video_url,item)
+        return self.playlist
+
+class BsPlayer(xbmc.Player):
+    def __init__(self,):
+        pass
+
+    def onPlayBackStarted(self):
+        xbmc.executebuiltin("PlayerControl(RepeatAll)")
+
+    def onPlayBackStopped(self):
+        return
 
 
 class Screensaver(xbmcgui.WindowXMLDialog):
-
-    class ExitMonitor(xbmc.Monitor):
-        def __init__(self, exit_callback):
-            self.exit_callback = exit_callback
-
-        def onScreensaverDeactivated(self):
-            print '3 ExitMonitor: sending exit_callback'
-            self.exit_callback()
-
+    def __init__( self, *args, **kwargs ):
+        pass
+    
     def onInit(self):
-        print '2 Screensaver: onInit'
-        self.monitor = self.ExitMonitor(self.exit)
-        # ALEX DEBUG
-        ###xbmc.executebuiltin("PlayMedia(/tmp/test.avi)")
-        xbmc.executebuiltin("PlayMedia(/tmp/test2.wmv)")
-        xbmc.executebuiltin("PlayerControl(RepeatAll)")
-        # Demachev A. check this
-        #xbmc.executebuiltin("xbmc.playercontrol(RepeatAll)")
-        #xbmc.executebuiltin("PlayerControl(Repeat)")
+        xbmc.sleep(1000)
+        li = BsPlaylist()
+        self.vpl = li.getPlaylist()
+        if self.vpl:
+            self.player = BsPlayer()
+            if not xbmc.getCondVisibility("Player.HasMedia"):
+                self.player.play(self.vpl,windowed=True)
 
-
-
-    def exit(self):
-        print '4 Screensaver: Exit requested'
-        # ALEX DEBUG
-        xbmc.executebuiltin("PlayerControl(RepeatOff)", True)
-        #xbmc.executebuiltin("PlayerControl(Stop)")
-
+    def onAction(self,action):
+        xbmc.PlayList(1).clear()
+        xbmc.Player().stop()
         self.close()
 
 
 if __name__ == '__main__':
-    print '1 Python Screensaver Started'
-    screensaver_gui = Screensaver(
-            "kodi-universe.xml",
-            __path__,
-            'default',
-        )
-    screensaver_gui.doModal()
-    print '5 Python Screensaver Exited'
-    #ALEX DEBUG xbmc.sleep(100)
-    del screensaver_gui
-    sys.modules.clear()
+    scr = Screensaver(
+        'kodi-universe.xml',
+        __path__,
+        'default',
+        '',
+    )
+    scr.doModal()
+    del scr
