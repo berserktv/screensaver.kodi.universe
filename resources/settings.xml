@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings height="800">
+    <category label="32001">
+        <setting id="videofile" label="32002" type="video"/>
+        <setting id="not-video" type="bool" label="32003" default="false"/>
+    </category>
+</settings>
