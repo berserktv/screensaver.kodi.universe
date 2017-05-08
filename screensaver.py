@@ -13,7 +13,7 @@ import xbmcaddon
 __id__ = 'screensaver.kodi.universe'
 __addon__ = xbmcaddon.Addon(id=__id__)
 __path__ = __addon__.getAddonInfo('path')
-video_url = 'special://profile/addon_data/screensaver.kodi.universe/kodi-universe.mkv'
+def_video_url = __path__+'/resources/skins/default/media/kodi-universe.mkv'
 
 class BsPlaylist:
     def __init__(self,):
@@ -22,7 +22,7 @@ class BsPlaylist:
     def getPlaylist(self,):
         self.playlist = xbmc.PlayList(1)
         item = xbmcgui.ListItem("item1")
-        self.playlist.add(video_url,item)
+        self.playlist.add(__addon__.getSetting("videofile"),item)
         return self.playlist
 
 class BsPlayer(xbmc.Player):
@@ -41,10 +41,17 @@ class Screensaver(xbmcgui.WindowXMLDialog):
         pass
     
     def onInit(self):
+        video_url = __addon__.getSetting("videofile")
+        if (video_url == ""):
+            video_url = def_video_url
+            __addon__.setSetting("videofile", video_url)
+        if (__addon__.getSetting("not-video") == "true" or not os.path.isfile(video_url) ):
+            return
+
         li = BsPlaylist()
         self.vpl = li.getPlaylist()
         if self.vpl:
-            xbmc.sleep(1000)
+            xbmc.sleep(2000)
             self.getControl(1).setImage("black.jpg")
             self.player = BsPlayer()
             if not xbmc.getCondVisibility("Player.HasMedia"):
