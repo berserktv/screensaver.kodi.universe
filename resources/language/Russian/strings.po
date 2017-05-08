@@ -17,6 +17,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgctxt "#32001"
-msgid "Message1"
-msgstr "Сообщение1"
+msgid "Screensaver"
+msgstr "Хранитель экрана"
 
+msgctxt "#32002"
+msgid "Video file"
+msgstr "Видеофайл"
+
+msgctxt "#32003"
+msgid "Not Video"
+msgstr "Не запускать видео"
