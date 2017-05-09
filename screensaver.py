@@ -58,9 +58,11 @@ class Screensaver(xbmcgui.WindowXMLDialog):
                 self.player.play(self.vpl,windowed=True)
 
     def onAction(self,action):
-        xbmc.PlayList(1).clear()
+        try: xbmc.PlayList(1).clear()
+        except: pass
         xbmc.Player().stop()
-        self.close()
+        try: self.close()
+        except: pass
 
 
 if __name__ == '__main__':
