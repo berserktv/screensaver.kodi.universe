@@ -1,7 +1,8 @@
 v0.1.1 - 09/05/2017
+Hooray
 - Add template video
 - Check running video
-- Add fanart
+- Add fanart "Buran"
 
 
 v0.1.0 - 05/05/2017
