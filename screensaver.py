@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Plugin for Kodi mediacenter
-# Kodi Universe - Very Simple Screensaver, autor Alexander Demachev (http://berserk.top)
+# Kodi Universe - Very Simple Screensaver, autor Alexander Demachev (http://berserk.tv)
 # GNU GENERAL PUBLIC LICENSE. Version 2, June 1991
 
 import os
@@ -20,6 +20,8 @@ class BsPlaylist:
         pass
 
     def getPlaylist(self,):
+        try: xbmc.PlayList(1).clear()
+        except: pass
         self.playlist = xbmc.PlayList(1)
         item = xbmcgui.ListItem("item1")
         self.playlist.add(__addon__.getSetting("videofile"),item)
