@@ -27,3 +27,7 @@ msgstr "Видеофайл"
 msgctxt "#32003"
 msgid "Not Video"
 msgstr "Не запускать видео"
+
+msgctxt "#32004"
+msgid "Dubai theme"
+msgstr "тема Дубай"

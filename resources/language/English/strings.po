@@ -28,3 +28,6 @@ msgctxt "#32003"
 msgid "Not Video"
 msgstr ""
 
+msgctxt "#32004"
+msgid "Dubai theme"
+msgstr ""

@@ -6,7 +6,7 @@
 import os
 import sys
 import xbmc
-import urllib
+import urllib2
 import xbmcgui
 import xbmcaddon
 
@@ -14,6 +14,15 @@ __id__ = 'screensaver.kodi.universe'
 __addon__ = xbmcaddon.Addon(id=__id__)
 __path__ = __addon__.getAddonInfo('path')
 def_video_url = __path__+'/resources/skins/default/media/kodi-universe.mkv'
+dubai = 'http://a1.v2.phobos.apple.com.edgesuite.net/us/r1000/000/Features/atv/AutumnResources/videos/comp_DB_D011_D009_SIGNCMP_v15_6Mbps.mov'
+
+def check_internet_on():
+    for timeout in [1,5,10,15]:
+        try:
+            response=urllib2.urlopen('http://apple.com',timeout=timeout)
+            return True
+        except urllib2.URLError as err: pass
+    return False
 
 class BsPlaylist:
     def __init__(self,):
@@ -23,8 +32,10 @@ class BsPlaylist:
         try: xbmc.PlayList(1).clear()
         except: pass
         self.playlist = xbmc.PlayList(1)
-        item = xbmcgui.ListItem("item1")
-        self.playlist.add(__addon__.getSetting("videofile"),item)
+        if (check_internet_on() and __addon__.getSetting("theme-dubai") == "true"):
+            self.playlist.add(dubai)
+        else:
+           self.playlist.add(__addon__.getSetting("videofile"))
         return self.playlist
 
 class BsPlayer(xbmc.Player):
@@ -47,7 +58,9 @@ class Screensaver(xbmcgui.WindowXMLDialog):
         if (video_url == ""):
             video_url = def_video_url
             __addon__.setSetting("videofile", video_url)
-        if (__addon__.getSetting("not-video") == "true" or not os.path.isfile(video_url) ):
+        if (__addon__.getSetting("not-video") == "true"):
+            return
+        if (__addon__.getSetting("theme-dubai") == "false" and not os.path.isfile(video_url)):
             return
 
         li = BsPlaylist()

@@ -3,5 +3,6 @@
     <category label="32001">
         <setting id="videofile" label="32002" type="video"/>
         <setting id="not-video" type="bool" label="32003" default="false"/>
+        <setting id="theme-dubai" type="bool" label="32004" default="true"/>
     </category>
 </settings>
