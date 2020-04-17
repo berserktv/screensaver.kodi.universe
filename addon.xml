@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="screensaver.kodi.universe" name="Kodi Universe" version="0.1.2" provider-name="berserktv">
+<addon id="screensaver.kodi.universe" name="Kodi Universe" version="0.1.3" provider-name="berserktv">
 	<requires>
 		<import addon="xbmc.python" version="2.7"/>
 	</requires>

@@ -1,3 +1,6 @@
+v0.1.3 - 17/04/2020
+- Add theme "Dubai"
+
 v0.1.2 - 23/06/2017
 - Fixed repeat playback
 
